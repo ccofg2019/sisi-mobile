@@ -323,16 +323,8 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="u_piloto.pas">
-            <Form>frm_piloto</Form>
-            <FormType>fmx</FormType>
-        </DCCReference>
         <DCCReference Include="login.pas">
             <Form>frm_login</Form>
-            <FormType>fmx</FormType>
-        </DCCReference>
-        <DCCReference Include="mapa.pas">
-            <Form>Form4</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="listaOcorrencias.pas">
@@ -341,6 +333,9 @@
         </DCCReference>
         <DCCReference Include="cadastro.pas">
             <Form>Form2</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="home.pas">
             <FormType>fmx</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
