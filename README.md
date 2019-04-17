@@ -1,2 +1,2 @@
-# sisi-back
-Sistema integrado de segurança inteligente
+# sisi-mobile
+Sistema integrado de seguranÃ§a inteligente
