@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
-  FMX.StdCtrls, FMX.Controls.Presentation, FMX.Layouts;
+  FMX.Layouts, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
   Tfrm_listaOcorrencias = class(TForm)
@@ -13,45 +13,14 @@ type
     Rectangle10: TRectangle;
     menu: TSpeedButton;
     title: TText;
-    labelOpcoes: TLayout;
+    VertScrollBox1: TVertScrollBox;
+    Layout1: TLayout;
     Rectangle1: TRectangle;
     Text1: TText;
-    VertScrollBox1: TVertScrollBox;
-    itemArrastao: TLayout;
-    Rectangle5: TRectangle;
-    imgArrastao: TImage;
-    titleArrastao: TText;
-    subtitleArrastao: TText;
-    itemFurto: TLayout;
-    Rectangle2: TRectangle;
-    imgFurto: TImage;
-    titleFurto: TText;
-    subtitleFurto: TText;
-    itemRoubo: TLayout;
-    Rectangle7: TRectangle;
-    imgRoubo: TImage;
-    titleRoubo: TText;
-    subtitleRoubo: TText;
-    itemRouboVeiculo: TLayout;
-    Rectangle3: TRectangle;
-    imgRouboVeiculo: TImage;
-    titleRouboVeiculo: TText;
-    subtitleRouboVeiculo: TText;
-    itemSequestro: TLayout;
-    Rectangle8: TRectangle;
-    titleSequestro: TText;
-    subtitleSequestro: TText;
-    itemTentativaAssalto: TLayout;
-    Rectangle6: TRectangle;
-    imgTentativaAssalto: TImage;
-    titleTentativaAssalto: TText;
-    subtitleTentativaAssalto: TText;
-    itemViolenciaMulher: TLayout;
-    Rectangle4: TRectangle;
-    imgViolenciaMulher: TImage;
-    titleViolenciaMulher: TText;
-    subtitleViolenciaMulher: TText;
-    procedure menuClick(Sender: TObject);
+    Text2: TText;
+    Text3: TText;
+    RoundRect1: TRoundRect;
+    Text4: TText;
   private
     { Private declarations }
   public
@@ -64,10 +33,5 @@ var
 implementation
 
 {$R *.fmx}
-
-procedure Tfrm_listaOcorrencias.menuClick(Sender: TObject);
-begin
-  close;
-end;
 
 end.

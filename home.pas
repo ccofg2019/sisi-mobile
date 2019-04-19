@@ -22,22 +22,22 @@ type
     ToolBar1: TToolBar;
     Label1: TLabel;
     btnSair: TButton;
-    groupRegistrar: TGridLayout;
     btnRegistrarOcorrencia: TLayout;
-    btnModoEmergencia: TLayout;
+    itemRegistrarIrregularidade: TLayout;
     btnRegistrarIrregularidade: TLayout;
     Text2: TText;
     Text3: TText;
     Text4: TText;
-    Rectangle2: TRectangle;
+    Image2: TImage;
+    Image3: TImage;
+    S: TImage;
+    Layout2: TLayout;
     Rectangle3: TRectangle;
     Rectangle4: TRectangle;
-    labelOpcoes: TLayout;
-    Rectangle5: TRectangle;
-    Text5: TText;
+    Rectangle2: TRectangle;
     procedure btnSairClick(Sender: TObject);
     procedure btnRegistrarOcorrenciaClick(Sender: TObject);
-    procedure btnModoEmergenciaClick(Sender: TObject);
+    procedure itemRegistrarIrregularidadeClick(Sender: TObject);
     procedure btnRegistrarIrregularidadeClick(Sender: TObject);
   private
     { Private declarations }
@@ -52,7 +52,7 @@ implementation
 
 {$R *.fmx}
 
-uses listaOcorrencias;
+uses registroOcorrencias;
 
 procedure Tfrm_home.btnSairClick(Sender: TObject);
 begin
@@ -63,17 +63,17 @@ procedure Tfrm_home.btnRegistrarOcorrenciaClick(Sender: TObject);
 begin
   multiView1.HideMaster;
   try
-    if not Assigned(frm_listaOcorrencias) then
+    if not Assigned(frm_registroOcorrencias) then
     begin
-      application.CreateForm(Tfrm_listaOcorrencias, frm_listaOcorrencias);
-      frm_listaOcorrencias.Show;
+      application.CreateForm(Tfrm_registroOcorrencias, frm_registroOcorrencias);
+      frm_registroOcorrencias.Show;
     end;
     finally
-      freeAndNil(frm_listaOcorrencias);
+      freeAndNil(frm_registroOcorrencias);
   end;
 end;
 
-procedure Tfrm_home.btnModoEmergenciaClick(Sender: TObject) ;
+procedure Tfrm_home.itemRegistrarIrregularidadeClick(Sender: TObject) ;
 begin
   multiView1.HideMaster;
   showmessage('Em desenvolvimento. Oxi...');
