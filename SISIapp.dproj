@@ -327,8 +327,8 @@
             <Form>frm_login</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="listaOcorrencias.pas">
-            <Form>Form3</Form>
+        <DCCReference Include="registroOcorrencias.pas">
+            <Form>frm_registroOcorrencias</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="cadastro.pas">
@@ -336,6 +336,10 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="home.pas">
+            <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="listaOcorrencias.pas">
+            <Form>frm_listaOcorrencias</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
