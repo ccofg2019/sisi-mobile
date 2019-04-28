@@ -31,7 +31,6 @@ type
     procedure btnCadastroClick(Sender: TObject);
     procedure Text1Click(Sender: TObject);
     procedure Text4Click(Sender: TObject);
-    procedure imgFooterClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -67,12 +66,6 @@ begin
    btnSubmit.AnimateFloat('Position.Y',420,2, TAnimationType.&Out, TInterpolationType.Elastic);
    btnSubmit.AnimateFloat('Position.Y',388,2, TAnimationType.&Out, TInterpolationType.Elastic);
    timer1.Enabled := true;
-end;
-
-procedure Tfrm_login.imgFooterClick(Sender: TObject);
-begin
-  application.CreateForm(Tfrm_home, frm_home);
-  frm_home.Show;
 end;
 
 procedure Tfrm_login.Text1Click(Sender: TObject);
