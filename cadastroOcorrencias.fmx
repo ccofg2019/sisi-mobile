@@ -1,0 +1,408 @@
+object frm_cadastroOcorrencias: Tfrm_cadastroOcorrencias
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 596
+  ClientWidth = 400
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 3
+  object header: TLayout
+    Align = Top
+    Margins.Bottom = 15.000000000000000000
+    Size.Width = 400.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object ToolBar1: TToolBar
+      Size.Width = 400.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      TintColor = claDarksalmon
+      object Rectangle10: TRectangle
+        Align = Contents
+        Fill.Color = xFFC21734
+        Size.Width = 400.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object menu: TSpeedButton
+        Align = Left
+        StyledSettings = [Family, Size, Style]
+        IconTintColor = claWhite
+        Size.Width = 48.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'backtoolbutton'
+        Text = 'menu'
+        TextSettings.FontColor = claWhite
+      end
+      object cadastro: TText
+        Align = Left
+        Position.X = 48.000000000000000000
+        Size.Width = 305.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'CADASTRO DE OCORR'#202'NCIAS'
+        TextSettings.Font.Size = 16.000000000000000000
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        TextSettings.FontColor = claWhite
+        TextSettings.HorzAlign = Leading
+      end
+    end
+  end
+  object VertScrollBox1: TVertScrollBox
+    Align = Client
+    Size.Width = 400.000000000000000000
+    Size.Height = 532.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 395.000000000000000000
+    Viewport.Height = 532.000000000000000000
+    object formDescricao: TLayout
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 348.000000000000000000
+      Size.Width = 375.000000000000000000
+      Size.Height = 123.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 7
+      object bgInput: TRectangle
+        Fill.Color = xFFF4F3F3
+        Position.X = 14.000000000000000000
+        Position.Y = 25.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 80.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object inputDescricao: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        StyleLookup = 'transparentedit'
+        TabOrder = 0
+        Position.X = 14.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object labelDescricao: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 14.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 129.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        Text = 'Descri'#231#227'o'
+        TabOrder = 1
+      end
+    end
+    object formLocal: TLayout
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 174.000000000000000000
+      Size.Width = 375.000000000000000000
+      Size.Height = 58.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      object Rectangle8: TRectangle
+        Fill.Color = xFFF4F3F3
+        Position.X = 14.000000000000000000
+        Position.Y = 25.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object labelLocal: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 14.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 129.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        Text = 'Local'
+        TabOrder = 0
+      end
+      object inputLocal: TComboBox
+        Position.X = 14.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentedit'
+        TabOrder = 1
+      end
+    end
+    object formTipoOcorrencia: TLayout
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 116.000000000000000000
+      Size.Width = 375.000000000000000000
+      Size.Height = 58.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 5
+      object Rectangle9: TRectangle
+        Fill.Color = xFFF4F3F3
+        Position.X = 12.000000000000000000
+        Position.Y = 25.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object labelTipoOcorrencia: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 12.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 129.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        Text = 'Tipo de ocorr'#234'ncia'
+        TabOrder = 0
+      end
+      object inputTipoOcorrencia: TComboBox
+        Position.X = 12.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentedit'
+        TabOrder = 1
+      end
+    end
+    object formTitulo: TLayout
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Size.Width = 375.000000000000000000
+      Size.Height = 58.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 8
+      object Rectangle1: TRectangle
+        Fill.Color = xFFF4F3F3
+        Position.X = 12.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object inputTitulo: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        StyleLookup = 'transparentedit'
+        TabOrder = 0
+        Position.X = 12.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object labelTitulo: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 12.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 129.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        Text = 'T'#237'tulo'
+        TabOrder = 1
+      end
+    end
+    object Layout2: TLayout
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 476.000000000000000000
+      Size.Width = 375.000000000000000000
+      Size.Height = 58.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 6
+      object Layout3: TLayout
+        Position.X = 13.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 169.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 8
+        object Rectangle11: TRectangle
+          Align = Contents
+          Fill.Color = xFFDADADA
+          Size.Width = 169.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Thickness = 0.000000000000000000
+          object Text2: TText
+            Align = Contents
+            Size.Width = 169.000000000000000000
+            Size.Height = 41.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'CANCELAR'
+            TextSettings.FontColor = xFF828282
+          end
+        end
+      end
+      object Layout4: TLayout
+        Position.X = 195.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 169.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 7
+        object Rectangle12: TRectangle
+          Align = Contents
+          Fill.Color = xFFC21734
+          Size.Width = 169.000000000000000000
+          Size.Height = 41.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Thickness = 0.000000000000000000
+          object Text1: TText
+            Align = Contents
+            Size.Width = 169.000000000000000000
+            Size.Height = 41.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'CADASTRAR'
+            TextSettings.FontColor = claWhite
+          end
+        end
+      end
+    end
+    object formBO: TLayout
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 58.000000000000000000
+      Size.Width = 375.000000000000000000
+      Size.Height = 58.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 4
+      object Rectangle2: TRectangle
+        Fill.Color = xFFF4F3F3
+        Position.X = 12.000000000000000000
+        Position.Y = 25.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object labelBO: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 12.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 129.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        Text = 'O B.O. foi feito?'
+        TabOrder = 0
+      end
+      object inputBO: TComboBox
+        Position.X = 12.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentedit'
+        TabOrder = 1
+      end
+    end
+    object formHora: TLayout
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 290.000000000000000000
+      Size.Width = 375.000000000000000000
+      Size.Height = 58.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object Rectangle3: TRectangle
+        Fill.Color = xFFF4F3F3
+        Position.X = 14.000000000000000000
+        Position.Y = 25.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object labelHora: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 14.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 129.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        Text = 'Hora do ocorrido'
+        TabOrder = 0
+      end
+      object inputHora: TComboBox
+        Position.X = 14.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentedit'
+        TabOrder = 1
+      end
+    end
+    object formData: TLayout
+      Align = Top
+      Margins.Left = 10.000000000000000000
+      Margins.Right = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Position.Y = 232.000000000000000000
+      Size.Width = 375.000000000000000000
+      Size.Height = 58.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      object Rectangle4: TRectangle
+        Fill.Color = xFFF4F3F3
+        Position.X = 14.000000000000000000
+        Position.Y = 25.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 33.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Thickness = 0.000000000000000000
+      end
+      object labelData: TLabel
+        StyledSettings = [Family, Style, FontColor]
+        Position.X = 14.000000000000000000
+        Position.Y = 1.000000000000000000
+        Size.Width = 129.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Size = 11.000000000000000000
+        Text = 'Data do ocorrido'
+        TabOrder = 0
+      end
+      object inputData: TComboBox
+        Position.X = 14.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 353.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyleLookup = 'transparentedit'
+        TabOrder = 1
+      end
+    end
+  end
+end

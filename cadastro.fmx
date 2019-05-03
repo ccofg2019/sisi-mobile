@@ -247,8 +247,7 @@ object frm_cadastro: Tfrm_cadastro
         Touch.InteractiveGestures = [LongTap, DoubleTap]
         StyleLookup = 'transparentedit'
         TabOrder = 0
-        Position.X = -32.000000000000000000
-        Position.Y = 24.000000000000000000
+        Position.Y = 25.000000000000000000
         Size.Width = 353.000000000000000000
         Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
@@ -351,7 +350,7 @@ object frm_cadastro: Tfrm_cadastro
         TabOrder = 0
         Position.X = 8.000000000000000000
         Position.Y = 24.000000000000000000
-        Size.Width = 337.000000000000000000
+        Size.Width = 345.000000000000000000
         Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
       end
