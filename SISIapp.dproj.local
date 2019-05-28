@@ -13,8 +13,27 @@
     <Transaction>2019/04/10 11:11:52.000.944,C:\PROJETO SISI\Project\Project1.dproj=C:\PROJETO SISI\Project\SISIapp.dproj</Transaction>
     <Transaction>2019/04/10 11:26:58.000.577,=C:\PROJETO SISI\Project\listaOcorrencias.pas</Transaction>
     <Transaction>2019/04/10 11:39:31.000.821,=C:\PROJETO SISI\Project\cadastro.pas</Transaction>
+    <Transaction>2019/04/28 12:32:43.000.209,C:\PROJETO SISI\fontes\sisi-mobile\home.pas=</Transaction>
+    <Transaction>2019/04/28 12:32:55.000.055,=C:\PROJETO SISI\fontes\sisi-mobile\home.pas</Transaction>
+    <Transaction>2019/04/28 15:28:48.000.986,=C:\PROJETO SISI\fontes\sisi-mobile\Unit1.pas</Transaction>
+    <Transaction>2019/04/28 15:29:33.000.360,C:\PROJETO SISI\fontes\sisi-mobile\Unit1.fmx=C:\PROJETO SISI\fontes\sisi-mobile\u_validacao.fmx</Transaction>
+    <Transaction>2019/04/28 15:29:33.000.360,C:\PROJETO SISI\fontes\sisi-mobile\Unit1.pas=C:\PROJETO SISI\fontes\sisi-mobile\u_validacao.pas</Transaction>
+    <Transaction>2019/04/29 05:39:52.000.887,=C:\PROJETO SISI\fontes\sisi-mobile\Unit1.pas</Transaction>
+    <Transaction>2019/04/29 05:40:50.000.028,C:\PROJETO SISI\fontes\sisi-mobile\u_PowerManager.pas=C:\PROJETO SISI\fontes\sisi-mobile\Unit1.pas</Transaction>
+    <Transaction>2019/05/02 20:25:34.000.761,=C:\PROJETO SISI\fontes\sisi-mobile\Unit1.pas</Transaction>
+    <Transaction>2019/05/02 20:26:01.000.487,C:\PROJETO SISI\fontes\sisi-mobile\u_registraOcorrencia.pas=C:\PROJETO SISI\fontes\sisi-mobile\Unit1.pas</Transaction>
+    <Transaction>2019/05/02 20:26:01.000.487,C:\PROJETO SISI\fontes\sisi-mobile\u_registraOcorrencia.fmx=C:\PROJETO SISI\fontes\sisi-mobile\Unit1.fmx</Transaction>
+    <Transaction>2019/05/03 23:26:30.000.862,=C:\PROJETO SISI\fontes\sisi-mobile\cadastroIrregularidades.pas</Transaction>
+    <Transaction>2019/05/03 23:58:20.000.262,=C:\PROJETO SISI\fontes\sisi-mobile\listaIrregularidades.pas</Transaction>
+    <Transaction>2019/05/04 00:15:19.000.356,=C:\PROJETO SISI\fontes\sisi-mobile\registroIrregularidades.pas</Transaction>
+    <Transaction>2019/05/09 22:05:57.000.193,=C:\PROJETO SISI\fontes\sisi-mobile\UnitFormatCNPJCPF.pas</Transaction>
+    <Transaction>2019/05/09 22:06:37.000.217,C:\PROJETO SISI\fontes\sisi-mobile\UnitFormatCNPJCPF.pas=</Transaction>
+    <Transaction>2019/05/20 09:42:07.000.578,=C:\PROJETO SISI\fontes\sisi-mobile\UnitFormatCNPJCPF.pas</Transaction>
+    <Transaction>2019/05/20 09:48:08.000.452,=C:\PROJETO SISI\fontes\sisi-mobile\uGhiFuncoes.pas</Transaction>
+    <Transaction>2019/05/25 20:20:19.000.344,=C:\PROJETO SISI\fontes\sisi-mobile\Unit1.pas</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
-		<NoProfile iOSSimulator="iPhone5" Android=""/>
+		<NoProfile iOSSimulator="iPhone5" Android="0041730162"/>
+		<PMACMike iOSSimulator="iPhone5"/>
 	</ActiveMobileDevice>
 </BorlandProject>
