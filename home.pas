@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.StdCtrls, FMX.Controls.Presentation, FMX.Layouts, FMX.MultiView,
-  FMX.Effects, FMX.Ani, System.Sensors, System.Sensors.Components, u_PowerManager,System.JSON
+  FMX.Effects, FMX.Ani, System.Sensors, System.Sensors.Components, u_PowerManager,System.JSON, iniFIles, System.IOUtils
 
   //Para vibração e permissão de localização --->
   {$IFDEF ANDROID}
@@ -149,8 +149,13 @@ type
   private
     { Private declarations }
     function TextoEntre(Texto, Delimitador1, Delimitador2: String; CaseSensitive : boolean = false): string;
-    var cont: integer;
-    latitude, longitude, emergency_id: string;
+    var
+      cont: integer;
+      latitude, longitude, emergency_id: string;
+
+    var
+      ArqINI: TIniFile;
+
     FProgressDialogThread: TThread;
     FActivityDialogThread: TThread;
 
@@ -597,6 +602,10 @@ begin
   dialogExit.Visible := false;
   frm_validacao.memo1.Lines.Clear;
   frm_validacao.edit2.Text := '';
+  ArqINI := TIniFile.Create(TPath.GetDocumentsPath + PathDelim + 'gravaLogin.ini');
+  ArqINI.WriteString('Config','usuario','');
+  ArqINI.WriteString('Config','senha','');
+  ArqINI.Free;
   close;
 end;
 
