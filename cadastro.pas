@@ -137,6 +137,8 @@ type
     Layout6: TLayout;
     Label3: TLabel;
     Image7: TImage;
+    Rectangle25: TRectangle;
+    Text13: TText;
     procedure menuClick(Sender: TObject);
     procedure Text1Click(Sender: TObject);
     procedure inputDataNascEnter(Sender: TObject);
@@ -150,7 +152,6 @@ type
     procedure inputConfirmarSenhaEnter(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure inputCpfExit(Sender: TObject);
     procedure fundoCPFClick(Sender: TObject);
     procedure FundoFoneClick(Sender: TObject);
     procedure inputNomeKeyDown(Sender: TObject; var Key: Word;
@@ -175,8 +176,6 @@ type
     procedure Image7Click(Sender: TObject);
     procedure inputEtniaClick(Sender: TObject);
     procedure Image6Click(Sender: TObject);
-    procedure inputCPFKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
-      Shift: TShiftState);
     procedure inputCPFEnter(Sender: TObject);
     procedure FormVirtualKeyboardShown(Sender: TObject;
       KeyboardVisible: Boolean; const Bounds: TRect);
@@ -184,6 +183,7 @@ type
     procedure inputNomeKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
     procedure inputNomeTyping(Sender: TObject);
+    procedure Text13Click(Sender: TObject);
   private
     { Private declarations }
     FProgressDialogThread: TThread;
@@ -197,6 +197,7 @@ type
     procedure ajustar_scroll();
     procedure limpaCampos();
 
+    //fsDocto
   public
     { Public declarations }
     var
@@ -233,7 +234,6 @@ begin
   end;
 end;
 
-
 //Formata número CPF
 Function formacpf(numtexto:String):String;
 begin
@@ -243,35 +243,6 @@ begin
     Delete(numtexto,ansipos('/',numtexto),1); //Remove barra /
     Result:=FormatmaskText('000\.000\.000\-00;0;',numtexto); // Formata os numeros
 
-end;
-
-function Cpf(CPF_Text: string): boolean;
-var n1,n2,n3,n4,n5,n6,n7,n8,n9: integer;
-       d1,d2: integer;
-       digitado, calculado: string;
-begin
-   n1:=StrToInt(CPF_Text[1]);
-   n2:=StrToInt(CPF_Text[2]);
-   n3:=StrToInt(CPF_Text[3]);
-   n4:=StrToInt(CPF_Text[5]);
-   n5:=StrToInt(CPF_Text[6]);
-   n6:=StrToInt(CPF_Text[7]);
-   n7:=StrToInt(CPF_Text[9]);
-   n8:=StrToInt(CPF_Text[10]);
-   n9:=StrToInt(CPF_Text[11]);
-                     d1:=n9*2+n8*3+n7*4+n6*5+n5*6+n4*7+n3*8+n2*9+n1*10;
-  d1:=11-(d1 mod 11);
-   if d1>=10 then d1:=0;
-        d2:=d1*2+n9*3+n8*4+n7*5+n6*6+n5*7+n4*8+n3*9+n2*10+n1*11;
-    d2:=11-(d2 mod 11);
-    if d2>=10 then
-       d2:=0;
-    calculado:=inttostr(d1)+inttostr(d2);
-   digitado:=CPF_Text[13]+CPF_Text[14];
-   if calculado=digitado then
-       Cpf:=true
-   else
-       Cpf:=false;
 end;
 
 procedure Tfrm_cadastro.ajustar_scroll;
@@ -389,57 +360,6 @@ begin
   GhiFunc.Teclado_CPF(self, edit1);
 end;
 
-procedure Tfrm_cadastro.inputCpfExit(Sender: TObject);
-var tamanho :integer;
-var sCpf: string;
-begin
-  inputCPF.Text := formacpf(inputCPF.Text);
-{  sCpf := FormatMaskText('000\.000\.000\-00;0;', inputCpf.text);
-  inputCpf.Text := '';
-  inputcpf.Text := sCpf;
-  sCpf := ''; }
- {If sCpf<>'' Then
-  begin
-  tamanho := length(sCpf);
-  //showmessage(intToStr(length(tamanho)));
-   if tamanho < 14 then
-   begin
-   //MessageDlg('Informe um CPF válido.',mtError, [mbOk],0);
-   showMessage('Informe um CPF válido1.');
-   //inputCpf.SetFocus;
-   //abort;
-   end else
-    If Cpf(sCpf)=False Then
-      Begin
-        showMessage('Informe um CPF válido2.');
-        //inputCpf.SetFocus;
-        //abort;
-      End;
-   end;
- { if (inputCpf.Text  = '000.000.000-00') or (inputCpf.Text  = '111.111.111-11') or (inputCpf.Text  = '222.222.222-22') or (inputCpf.Text  = '333.333.333-33') or (inputCpf.Text  = '444.444.444-44') or (inputCpf.Text  = '555.555.555-55') or
-  (inputCpf.Text  = '777.777.777-77') or (inputCpf.Text  = '888.888.888-88') or (inputCpf.Text  = '999.999.999-99') then
-  begin
-   //MessageDlg('CPF informado inválido.',mtError, [mbOk],0);
-   showMessage('CPF informado inválido.');
-   //inputCpf.SetFocus;
-   //abort;
-  end;  }
-
-  //inputCpf.text :=  FormatMaskText('000\.000\.000\-00;0;', inputCpf.text);
-end;
-
-
-procedure Tfrm_cadastro.inputCPFKeyDown(Sender: TObject; var Key: Word;
-  var KeyChar: Char; Shift: TShiftState);
-begin
- //if length(inputCPF.text) = 11 then
- //begin
- //   keyChar := #0;
-  //inputCPF.Text := formacpf(inputCPF.Text);
- //end;
-
-end;
-
 procedure Tfrm_cadastro.inputDataNascEnter(Sender: TObject);
 begin
   vFoco := TControl(TEdit(sender).Parent);
@@ -504,8 +424,8 @@ begin
   inputEmail.Text          := '';
   inputSenha.Text          := '';
   inputConfirmarSenha.Text := '';
-  inputGenero.Text         := '';
-  inputEtnia.Text          := '';
+  inputGenero.Text         := 'ESCOLHA UMA OPÇÃO';
+  inputEtnia.Text          := 'ESCOLHA UMA OPÇÃO';
   inputCel.Text            := '';
   edit1.Text               := '';
   vCPF_numeros             := '';
@@ -600,6 +520,22 @@ begin
     end);
     FActivityDialogThread.FreeOnTerminate := False;
     FActivityDialogThread.Start;
+end;
+
+procedure Tfrm_cadastro.Text13Click(Sender: TObject);
+begin
+  with GhiFunc do
+  begin
+    fundoCPF.Visible := false;
+    inputCPF.text := '';
+    edit2.Text := '';
+    VertScrollBox1.Margins.Bottom := 0;
+    vPanel.Visible := False;
+    vPanel.DisposeOf;
+    vPanel := nil;
+    FreeAndNil(vPanel);
+  end;
+  inputDataNasc.SetFocus;
 end;
 
 procedure Tfrm_cadastro.Text1Click(Sender: TObject);
@@ -702,16 +638,6 @@ begin
     FActivityDialogThread.FreeOnTerminate := False;
     FActivityDialogThread.Start;
   end;
-
-
-
-
-
-
-
-
-
-
 end;
 
 procedure Tfrm_cadastro.Text2Click(Sender: TObject);
@@ -946,7 +872,6 @@ begin
   end;
   if not vOffSef then
     restorePosition;
-
 
 end;
 

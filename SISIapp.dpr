@@ -17,7 +17,8 @@ uses
   listaIrregularidades in 'listaIrregularidades.pas' {frm_listaIrregularidades},
   registroIrregularidades in 'registroIrregularidades.pas' {frm_registroIrregularidades},
   UnitFormatCNPJCPF in 'UnitFormatCNPJCPF.pas',
-  uGhiFuncoes in 'uGhiFuncoes.pas';
+  uGhiFuncoes in 'uGhiFuncoes.pas',
+  u_recuperarSenha in 'u_recuperarSenha.pas' {frm_recuperarSenha};
 
 {$R *.res}
 
@@ -33,5 +34,6 @@ begin
   Application.CreateForm(Tfrm_cadastroIrregularidades, frm_cadastroIrregularidades);
   Application.CreateForm(Tfrm_listaIrregularidades, frm_listaIrregularidades);
   Application.CreateForm(Tfrm_registroIrregularidades, frm_registroIrregularidades);
+  Application.CreateForm(Tfrm_recuperarSenha, frm_recuperarSenha);
   Application.Run;
 end.

@@ -16,7 +16,7 @@ uses System.SysUtils, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
      System.Classes, FMX.Edit, System.Math, IdIOHandler, IdSMTP,
      IdMessage, IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL,
      IniFiles, IdHTTP, System.Json, IPPeerClient, REST.Client,
-     Data.Bind.Components, Data.Bind.ObjectScope, Rest.Utils, FMX.WebBrowser
+     Data.Bind.Components, Data.Bind.ObjectScope, Rest.Utils, FMX.WebBrowser, System.StrUtils
   {$IFDEF ANDROID} //if the operative system is Android
      , Androidapi.JNI.Telephony, Androidapi.JNI.Provider ,
      Androidapi.JNIBridge, Androidapi.JNI.GraphicsContentViewText ,
@@ -47,6 +47,8 @@ uses System.SysUtils, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
           //procedure ExecutaSQL(pSQL: String);
           //function  Data_Hora_Servidor: TDateTime;
           //function  Data_Servidor: TDateTime;
+
+          function ValidarCPF(cpf: String): Boolean;
           procedure Fecha_Tela(pForm: TForm);
           function  UltimoDiaDoMes(MesAno: string): string;
           function  isCPF(CPF: string): boolean;
@@ -70,6 +72,7 @@ uses System.SysUtils, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
                               pCorBorda : TAlphaColor = TAlphaColorRec.Black) : String;
           function  Distancia(pLatPartida, pLongPartida, pLatDestino,
                                            pLongDestino: Double): String;
+
 
           procedure Envia_Email(pAssunto, pDestinatario, pTitMsg, pMsg, pNome, pHash,
                                 pURL_Logotipo, pAssinatura, pURL_Instagram, pURL_Twitter, pURL_Facebook,
@@ -516,7 +519,7 @@ begin
      vButton.Parent      := vPanel_Btn;
      vButton.Position.X  := 0;
      vButton.Position.Y  := 0;
-     vButton.Text        := '';
+     vButton.Text        := 'Apagar';
      vButton.OnClick     := Clique_Btn_Del;
      vButton.Height      := 41;
      vButton.Width       := 100;
@@ -734,19 +737,26 @@ procedure TUtil.Clique_Btn_OK(Sender : TObject);
 var
    vValor : String;
 begin
-     frm_cadastro.fundoCPF.Visible := false;
-     frm_cadastro.inputCPF.text := frm_cadastro.edit1.Text;
-     frm_cadastro.vCPF_numeros := tirapontos(frm_cadastro.edit1.Text);
-     frm_cadastro.VertScrollBox1.Margins.Bottom := 0;
-     vPanel.Visible := False;
-     vPanel.DisposeOf;
-     vPanel := nil;
-     FreeAndNil(vPanel);
-     if vTipoTeclado = 'VLR' then
-     begin
-         if vEdtValor.Text = '' then
-            vEdtValor.TextPrompt := 'R$ 0,00';
-     end;
+    frm_cadastro.vCPF_numeros := tirapontos(frm_cadastro.edit1.Text);
+    if ValidarCPF(frm_cadastro.vCPF_numeros) = true then
+    begin
+      frm_cadastro.fundoCPF.Visible := false;
+      frm_cadastro.inputCPF.text := frm_cadastro.edit1.Text;
+
+      frm_cadastro.VertScrollBox1.Margins.Bottom := 0;
+      vPanel.Visible := False;
+      vPanel.DisposeOf;
+      vPanel := nil;
+      FreeAndNil(vPanel);
+      if vTipoTeclado = 'VLR' then
+      begin
+        if vEdtValor.Text = '' then
+          vEdtValor.TextPrompt := 'R$ 0,00';
+       end;
+    end else
+    begin
+      showmessage('CPF inválido');
+    end;
 end;
 
 procedure TUtil.Clique_Btn_Del(Sender : TObject);
@@ -1163,6 +1173,62 @@ begin
        UltimoDiaDoMes := '29'
     else
         UltimoDiaDoMes := '28';
+end;
+
+
+function TUtil.ValidarCPF(cpf: String): Boolean;
+var
+  v: array[0..1] of Word;
+begin
+  if (Length(cpf) <> 11) then
+  begin
+     //showmessage('CPF deve ter 11 dígitos. (Apenas números)');
+     result := false;
+     exit
+  end ;
+
+  if pos(cpf,'11111111111.22222222222.33333333333.44444444444.55555555555.'+
+         '66666666666.77777777777.88888888888.99999999999.00000000000') > 0 then
+  begin
+     //showmessage('CPF Informado não é válido');
+     result := false;
+     exit ;
+  end ;
+
+  try
+    //Nota: Calcula o primeiro dígito de verificação.
+    v[0] := 10*StrToInt(cpf[0]) + 9*StrToInt(cpf[1]) + 8*StrToInt(cpf[2]);
+    v[0] := v[0] + 7*StrToInt(cpf[3]) + 6*StrToInt(cpf[4]) + 5*StrToInt(cpf[5]);
+    v[0] := v[0] + 4*StrToInt(cpf[6]) + 3*StrToInt(cpf[7]) + 2*StrToInt(cpf[8]);
+    v[0] := 11 - v[0] mod 11;
+    v[0] := IfThen(v[0] >= 10, 0, v[0]);
+    //Nota: Calcula o segundo dígito de verificação.
+    v[1] := 11*StrToInt(cpf[0]) + 10*StrToInt(cpf[1]) + 9*StrToInt(cpf[2]);
+    v[1] := v[1] + 8*StrToInt(cpf[3]) +  7*StrToInt(cpf[4]) + 6*StrToInt(cpf[5]);
+    v[1] := v[1] + 5*StrToInt(cpf[6]) +  4*StrToInt(cpf[7]) + 3*StrToInt(cpf[8]);
+    v[1] := v[1] + 2*v[0];
+    v[1] := 11 - v[1] mod 11;
+    v[1] := IfThen(v[1] >= 10, 0, v[1]);
+    //Nota: Verdadeiro se os dígitos de verificação são os esperados.
+    if ((v[0] <> StrToInt(cpf[9])) or (v[1] <> StrToInt(cpf[10])))then
+    begin
+      //showmessage('CPF Informado não é válido');
+      result := false;
+      exit;
+    end else
+    begin
+      result := true;
+    end;
+
+  except
+    on E:Exception do
+    begin
+      //showmessage('Erro ao validar CPF '+slinebreak+E.Message);
+      result := false;
+      exit;
+    end;
+  end;
+
 end;
 
 function TUtil.isCPF(CPF: string): boolean;

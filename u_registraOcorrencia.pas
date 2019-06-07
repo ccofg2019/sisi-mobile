@@ -11,7 +11,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   REST.Response.Adapter, Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   REST.Client, Data.Bind.Components, Data.Bind.ObjectScope, System.Sensors,
-  System.Sensors.Components, System.Net.HttpClient
+  System.Sensors.Components, System.Net.HttpClient, System.math
 
     //Permissão localização
   {$IFDEF ANDROID}
@@ -28,30 +28,6 @@ type
     menu: TSpeedButton;
     Text1: TText;
     VertScrollBox1: TVertScrollBox;
-    Layout1: TLayout;
-    Label1: TLabel;
-    Edit1: TEdit;
-    Rectangle1: TRectangle;
-    Layout2: TLayout;
-    Rectangle2: TRectangle;
-    Label2: TLabel;
-    Layout3: TLayout;
-    Rectangle3: TRectangle;
-    Label3: TLabel;
-    Layout4: TLayout;
-    Rectangle4: TRectangle;
-    Label4: TLabel;
-    Layout5: TLayout;
-    Rectangle5: TRectangle;
-    Label5: TLabel;
-    Layout6: TLayout;
-    Rectangle6: TRectangle;
-    Label6: TLabel;
-    Memo1: TMemo;
-    data: TDateEdit;
-    hora: TTimeEdit;
-    ComboBox1: TComboBox;
-    ComboBox2: TComboBox;
     RESTClient1: TRESTClient;
     RESTRequest1: TRESTRequest;
     RESTResponse1: TRESTResponse;
@@ -60,13 +36,41 @@ type
     ed_latitude: TEdit;
     Timer1: TTimer;
     Image1: TImage;
-    Rectangle8: TRectangle;
-    Rectangle7: TRectangle;
-    Rectangle9: TRectangle;
-    Rectangle11: TRectangle;
-    Rectangle12: TRectangle;
     fgActivityDialog: TfgActivityDialog;
     ShadowEffect1: TShadowEffect;
+    Image7: TImage;
+    lt_principal: TLayout;
+    formNome: TLayout;
+    labelNome: TLabel;
+    Rectangle1: TRectangle;
+    edit1: TEdit;
+    ShadowEffect2: TShadowEffect;
+    Layout1: TLayout;
+    Label1: TLabel;
+    Rectangle8: TRectangle;
+    ShadowEffect3: TShadowEffect;
+    ComboBox2: TComboBox;
+    Layout5: TLayout;
+    Label5: TLabel;
+    Rectangle5: TRectangle;
+    ShadowEffect5: TShadowEffect;
+    ComboBox3: TComboBox;
+    Layout6: TLayout;
+    Label6: TLabel;
+    Rectangle6: TRectangle;
+    ShadowEffect4: TShadowEffect;
+    data: TDateEdit;
+    Layout4: TLayout;
+    Label4: TLabel;
+    Rectangle4: TRectangle;
+    ShadowEffect6: TShadowEffect;
+    hora: TTimeEdit;
+    Layout3: TLayout;
+    Label3: TLabel;
+    Rectangle3: TRectangle;
+    ShadowEffect7: TShadowEffect;
+    Memo1: TMemo;
+    StyleBook1: TStyleBook;
     procedure menuClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Text1Click(Sender: TObject);
@@ -77,12 +81,21 @@ type
     procedure Memo1Enter(Sender: TObject);
     procedure FormVirtualKeyboardHidden(Sender: TObject;
       KeyboardVisible: Boolean; const Bounds: TRect);
+    procedure Image7Click(Sender: TObject);
+    procedure FormVirtualKeyboardShown(Sender: TObject;
+      KeyboardVisible: Boolean; const Bounds: TRect);
+    procedure FormFocusChanged(Sender: TObject);
   private
     { Private declarations }
     FProgressDialogThread: TThread;
     FActivityDialogThread: TThread;
-    vFoco: TControl;
     latitude, longitude: string;
+    vFoco: TControl;
+    vBounds: TRectF;
+    vOffSef: boolean;
+    procedure calcBounds(Sender: TObject; var contentBounds: TRectF);
+    procedure restorePosition;
+    procedure updatePosition;
     procedure ajustar_scroll();
   public
     { Public declarations }
@@ -105,20 +118,35 @@ begin
     VertScrollBox1.ViewportPosition := PointF(VertScrollBox1.ViewportPosition.X, TControl(vFoco).Position.Y - 90);
 end;
 
+procedure Tfrm_registraOcorrencia.calcBounds(Sender: TObject;
+  var contentBounds: TRectF);
+begin
+if (vOffSef) and (vBounds.Top > 0) then
+  begin
+    contentBounds.Bottom := Max(contentBounds.Bottom, 2 * ClientHeight - vBounds.Top);
+  end;
+end;
+
 procedure Tfrm_registraOcorrencia.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   edit1.Text := '';
-  ComboBox1.ItemIndex := -1;
   ComboBox2.ItemIndex := -1;
+  ComboBox3.ItemIndex := -1;
   memo1.Lines.Clear;
   ed_longitude.Text := '';
   ed_latitude.Text  := '';
   text1.Enabled := true
 end;
 
+procedure Tfrm_registraOcorrencia.FormFocusChanged(Sender: TObject);
+begin
+  updatePosition;
+end;
+
 procedure Tfrm_registraOcorrencia.FormShow(Sender: TObject);
 begin
+  VertScrollBox1.OnCalcContentBounds := calcBounds;
   edit1.SetFocus;
   data.Date := date;
   hora.Time := time;
@@ -127,7 +155,24 @@ end;
 procedure Tfrm_registraOcorrencia.FormVirtualKeyboardHidden(Sender: TObject;
   KeyboardVisible: Boolean; const Bounds: TRect);
 begin
-  VertScrollBox1.Margins.Bottom := 0;
+  //VertScrollBox1.Margins.Bottom := 0;
+  vBounds.Create(0,0,0,0);
+  vOffSef := false;
+  restorePosition;
+end;
+
+procedure Tfrm_registraOcorrencia.FormVirtualKeyboardShown(Sender: TObject;
+  KeyboardVisible: Boolean; const Bounds: TRect);
+begin
+  vBounds := TRectF.Create(Bounds);
+  vBounds.TopLeft := ScreenToClient(vBounds.TopLeft);
+  vBounds.BottomRight := ScreenToClient(vBounds.BottomRight);
+  updatePosition;
+end;
+
+procedure Tfrm_registraOcorrencia.Image7Click(Sender: TObject);
+begin
+ text1Click(self);
 end;
 
 procedure Tfrm_registraOcorrencia.LocalizacaoLocationChanged(Sender: TObject;
@@ -143,13 +188,20 @@ end;
 
 procedure Tfrm_registraOcorrencia.Memo1Enter(Sender: TObject);
 begin
-  vFoco := TControl(TMemo(sender).Parent);
-  ajustar_scroll();
+  //vFoco := TControl(TMemo(sender).Parent);
+  //ajustar_scroll();
 end;
 
 procedure Tfrm_registraOcorrencia.menuClick(Sender: TObject);
 begin
   close;
+end;
+
+procedure Tfrm_registraOcorrencia.restorePosition;
+begin
+  VertScrollBox1.ViewportPosition := PointF(VertScrollBox1.ViewportPosition.X, 0);
+  lt_principal.Align := TAlignLayout.Client;
+  VertScrollBox1.RealignContent;
 end;
 
 procedure Tfrm_registraOcorrencia.Text1Click(Sender: TObject);
@@ -171,6 +223,7 @@ begin
         try
           TThread.Synchronize(nil, procedure
           begin
+            VertScrollBox1.Enabled := false;
             text1.Enabled := false;
             text1.AnimateFloat('Position.Y',30,1, TAnimationType.&Out, TInterpolationType.Elastic);
             text1.AnimateFloat('Position.Y',0,1, TAnimationType.&Out, TInterpolationType.Elastic);
@@ -247,6 +300,7 @@ begin
           if not TThread.CheckTerminated then
             TThread.Synchronize(nil, procedure
             begin
+              VertScrollBox1.Enabled := true;
               fgActivityDialog.Hide;
               showMessage('Ocorrência cadastrada com sucesso');
               close;
@@ -302,6 +356,34 @@ begin
     abort;
    end;
   end;
+
+end;
+
+procedure Tfrm_registraOcorrencia.updatePosition;
+var
+  LFocused: TControl;
+  LFocusRect: TRectF;
+begin
+  vOffSef := false;
+  if Assigned(Focused) then
+  begin
+    LFocused := TControl(Focused.GetObject);
+    LFocusRect := LFocused.AbsoluteRect;
+    LFocusRect.Offset(VertScrollBox1.ViewportPosition);
+
+    if (LFocusRect.IntersectsWith(TRectF.Create(vBounds))) and (LFocusRect.Bottom > vBounds.Top) then
+    begin
+      vOffSef := true;
+      lt_principal.Align := TAlignLayout.Horizontal;
+      VertScrollBox1.RealignContent;
+      application.ProcessMessages;
+      VertScrollBox1.ViewportPosition := PointF(VertScrollBox1.ViewportPosition.x, LFocusRect.Bottom - vBounds.Top);
+    end;
+
+  end;
+  if not vOffSef then
+    restorePosition;
+
 
 end;
 
